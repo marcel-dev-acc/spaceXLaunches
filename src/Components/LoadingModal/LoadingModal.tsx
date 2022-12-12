@@ -3,9 +3,9 @@ import {StyleSheet, View, Image} from 'react-native';
 import {Text, Portal, Modal} from 'react-native-paper';
 
 type LoadingModalProps = {
-  loading: boolean,
-  loadingText: string,
-  onDismiss?: () => void,
+  loading: boolean;
+  loadingText: string;
+  onDismiss?: () => void;
 };
 
 /**

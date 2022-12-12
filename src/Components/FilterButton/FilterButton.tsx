@@ -3,9 +3,9 @@ import {StyleSheet, View} from 'react-native';
 import {TouchableRipple, Text, IconButton, Menu} from 'react-native-paper';
 
 type FilterButtonProps = {
-  years: number[],
-  setFilterYear: (year: number) => void,
-  filterLaunchesByYear: (year: number) => void,
+  years: number[];
+  setFilterYear: (year: number) => void;
+  filterLaunchesByYear: (year: number) => void;
 };
 
 /**

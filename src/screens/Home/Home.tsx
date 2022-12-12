@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
-import { Text, ActivityIndicator } from 'react-native-paper';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, useWindowDimensions} from 'react-native';
+import {Text, ActivityIndicator} from 'react-native-paper';
 
 // Home specific imports
-import { Logo } from '../../components';
+import {Logo} from '../../components';
 import launchStore from '../../state/store';
-import { fetchLaunches } from '../../services/api.launches.service';
-import type { Launch } from '../../types/type.launches';
-import { LAUNCHES_ACTION_TYPES } from '../../constants/state';
-import type { AddLaunchAction, RemoveLaunchAction } from '../../state/types';
+import {fetchLaunches} from '../../services/api.launches.service';
+import type {Launch} from '../../types/type.launches';
+import {LAUNCHES_ACTION_TYPES} from '../../constants/state';
+import type {AddLaunchAction, RemoveLaunchAction} from '../../state/types';
 
 type HomeScreenProps = {
-  setReady: (ready: boolean) => void,
+  setReady: (ready: boolean) => void;
 };
 
 /**
@@ -21,8 +21,7 @@ type HomeScreenProps = {
  * can also hold the login / registration
  * functionality.
  */
-const HomeScreen = ({ setReady }: HomeScreenProps) => {
-
+const HomeScreen = ({setReady}: HomeScreenProps) => {
   const handleFetchLaunches = async () => {
     let launchDetails: Launch[] = await fetchLaunches();
     // Sort the list
@@ -51,9 +50,13 @@ const HomeScreen = ({ setReady }: HomeScreenProps) => {
   }, []);
 
   return (
-    <View style={[styles.homeContainer, {
-      marginTop: windowHeight / 4,
-    }]}>
+    <View
+      style={[
+        styles.homeContainer,
+        {
+          marginTop: windowHeight / 4,
+        },
+      ]}>
       <Logo />
       <ActivityIndicator
         animating={true}
@@ -61,10 +64,7 @@ const HomeScreen = ({ setReady }: HomeScreenProps) => {
         color="rgba(61, 96, 170, 1)"
         style={styles.homeLoader}
       />
-      <Text
-        variant="titleLarge"
-        style={styles.homeText}
-      >
+      <Text variant="titleLarge" style={styles.homeText}>
         Getting ready for launch...
       </Text>
     </View>
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   homeText: {
-    alignSelf: "center",
-    color: "rgba(0, 0, 0, 1)",
+    alignSelf: 'center',
+    color: 'rgba(0, 0, 0, 1)',
   },
 });
 

@@ -56,7 +56,7 @@ const LaunchesScreen = () => {
     let launchDetails: Launch[] = launchStore.getState();
     let years: number[] = [];
     launchDetails.forEach((launch: Launch) => {
-      const year = timestampGetYear(launch.launch_date_unix); 
+      const year = timestampGetYear(launch.launch_date_unix);
       if (years.indexOf(year) === -1) years.push(year);
     });
     setYears(years);

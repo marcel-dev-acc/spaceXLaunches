@@ -7,7 +7,7 @@ import type {Launch} from '../../types/type.launches';
 import {formatTimestamp} from '../../utils/date.util';
 
 type LaunchItemProps = {
-  launch: Launch,
+  launch: Launch;
 };
 
 /**

@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {TouchableRipple, Text, IconButton, Menu} from 'react-native-paper';
 
 type ReloadButtonProps = {
-  handleFetchLaunches: () => void,
+  handleFetchLaunches: () => void;
 };
 
 /**

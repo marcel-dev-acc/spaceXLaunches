@@ -3,10 +3,10 @@ import {StyleSheet, View} from 'react-native';
 import {TouchableRipple, Text, IconButton} from 'react-native-paper';
 
 type SortButtonProps = {
-  sortDirectionAsc: boolean,
-  setSortDirectionAsc: (sortDirectionAsc: boolean) => void,
-  sortLaunchesAsc: () => void,
-  sortLaunchesDsc: () => void,
+  sortDirectionAsc: boolean;
+  setSortDirectionAsc: (sortDirectionAsc: boolean) => void;
+  sortLaunchesAsc: () => void;
+  sortLaunchesDsc: () => void;
 };
 
 /**
