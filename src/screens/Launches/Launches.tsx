@@ -3,7 +3,7 @@ import {StyleSheet, View, FlatList, Image } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 
 // Launches specific imports
-import { FilterButton, LaunchItem, SortButton, ReloadButton, Logo } from '../../components';
+import { FilterButton, LaunchItem, SortButton, ReloadButton, Logo, Background } from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
 import type { Launch } from '../../types/type.launches';
 
@@ -47,6 +47,7 @@ const LaunchesScreen = () => {
 
   return (
     <View style={styles.launchesScreen}>
+      <Background />
       <View style={styles.headerContainer}>
         <Logo />
         <ReloadButton />

@@ -1,3 +1,4 @@
+export { default as Background } from "./Background/Background";
 export { default as FilterButton } from "./FilterButton/FilterButton";
 export { default as LaunchItem } from './LaunchItem/LaunchItem';
 export { default as Logo } from './Logo/Logo';
