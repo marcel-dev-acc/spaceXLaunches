@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     marginRight: 50,
     backgroundColor: "rgba(255, 255, 255, 1)",
   },
+  loadingContainer: {},
   loadingImg: {
     width: 250,
     height: 250,
