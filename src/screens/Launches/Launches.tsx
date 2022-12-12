@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, FlatList, Text } from 'react-native';
+import FilterButton from '../../Components/FilterButton/FilterButton';
 
 // Launches specific imports
 import LaunchItem from '../../Components/LaunchItem/LaunchItem';
@@ -34,11 +35,12 @@ const LaunchesScreen = () => {
 
   return (
     <View style={styles.launchesScreen}>
-      <View>
+      <View style={styles.listActionsContainer}>
         <SortButton
           sortDirectionAsc={sortDirectionAsc}
           setSortDirectionAsc={setSortDirectionAsc}
         />
+        <FilterButton />
       </View>
       <FlatList
         data={launches}
@@ -52,6 +54,9 @@ const styles = StyleSheet.create({
   launchesScreen: {
     backgroundColor: "white",
     flex: 1,
+  },
+  listActionsContainer: {
+    flexDirection: "row-reverse",
   },
 });
 
