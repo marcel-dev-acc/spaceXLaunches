@@ -5,6 +5,7 @@ import { TouchableRipple, Text, IconButton, Menu } from 'react-native-paper';
 type FilterButtonProps = {
   years: number[],
   setFilterYear: (year: number) => void,
+  filterLaunchesByYear: (year: number) => void,
 };
 
 /**
@@ -12,7 +13,7 @@ type FilterButtonProps = {
  *
  * Used to define the sort direction for a list
  */
-const FilterButton = ({ years, setFilterYear }: FilterButtonProps) => {
+const FilterButton = ({ years, setFilterYear, filterLaunchesByYear }: FilterButtonProps) => {
 
   const toggleYearMenu = () => setYearMenuVisible(!yearMenuVisible);
 
@@ -24,7 +25,7 @@ const FilterButton = ({ years, setFilterYear }: FilterButtonProps) => {
       onDismiss={toggleYearMenu}
       anchor={
         <TouchableRipple
-          onPress={() => toggleYearMenu()}
+          onPress={toggleYearMenu}
           rippleColor="rgba(0, 0, 0, .32)"
           style={styles.buttonPress}
         >
@@ -52,6 +53,7 @@ const FilterButton = ({ years, setFilterYear }: FilterButtonProps) => {
               key={idx}
               onPress={() => {
                 setFilterYear(year);
+                filterLaunchesByYear(year);
                 toggleYearMenu();
               }}
               title={year}

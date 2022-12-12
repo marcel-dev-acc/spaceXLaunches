@@ -44,6 +44,14 @@ const LaunchesScreen = () => {
     setLaunches(launchDetails);
   };
 
+  const filterLaunchesByYear = (year: number) => {
+    let launchDetails: Launch[] = launches; // Need to get content from global state again
+    console.log(year);
+    launchDetails = launchDetails.filter((launch: Launch) => timestampGetYear(launch.launch_date_unix) === year);
+    setLaunches(launchDetails);
+    console.log(launches.length);
+  };
+
   const _launches: Launch[] = [];
   const [launches, setLaunches] = useState(_launches);
   const [sortDirectionAsc, setSortDirectionAsc] = useState(true);
@@ -53,7 +61,7 @@ const LaunchesScreen = () => {
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
-  }, [launches]);
+  }, []);
 
   const launchItem = ({ item }: any) => (
       <LaunchItem launch={item} />
@@ -64,7 +72,9 @@ const LaunchesScreen = () => {
       <Background />
       <View style={styles.headerContainer}>
         <Logo />
-        <ReloadButton />
+        <ReloadButton
+          handleFetchLaunches={handleFetchLaunches}
+        />
       </View>
       <View style={styles.listActionsContainer}>
         <SortButton
@@ -76,16 +86,22 @@ const LaunchesScreen = () => {
         <FilterButton
           years={years}
           setFilterYear={setFilterYear}
+          filterLaunchesByYear={filterLaunchesByYear}
         />
       </View>
       {filterYear > 0 && (
         <View style={styles.yearChipContainer}>
           <Chip
-            onClose={() => setFilterYear(0)}
+            onClose={() => {
+              setFilterYear(0);
+              handleFetchLaunches();
+            }}
             style={styles.yearChip}
+            mode="outlined"
           >
             <Text
               variant='bodyLarge'
+              style={styles.yearChipText}
             >
               {filterYear}
             </Text>
@@ -114,6 +130,11 @@ const styles = StyleSheet.create({
   },
   yearChip: {
     width: 90,
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    borderColor: "rgba(61, 96, 170, 1)",
+  },
+  yearChipText: {
+    color: "rgba(0, 0, 0, 1)",
   },
   headerContainer: {
     margin: 5,
