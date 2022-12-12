@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, FlatList } from 'react-native';
+import {StyleSheet, View, FlatList, Image } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 
 // Launches specific imports
-import { FilterButton, LaunchItem, SortButton } from '../../components';
+import { FilterButton, LaunchItem, SortButton, ReloadButton } from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
 import type { Launch } from '../../types/type.launches';
 
@@ -47,6 +47,14 @@ const LaunchesScreen = () => {
 
   return (
     <View style={styles.launchesScreen}>
+      <View style={styles.headerContainer}>
+        <Image
+          accessibilityLabel="Space X logo"
+          source={require('../../assets/img/spacex-logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
       <View style={styles.listActionsContainer}>
         <SortButton
           sortDirectionAsc={sortDirectionAsc}
@@ -93,6 +101,19 @@ const styles = StyleSheet.create({
   },
   yearChip: {
     width: 90,
+  },
+  headerContainer: {
+    borderColor: "green",
+    borderWidth: 1,
+    margin: 5,
+    flexDirection: "row",
+  },
+  logo: {
+    width: 200,
+    height: 50,
+    borderColor: "red",
+    borderWidth: 1,
+    backgroundColor: "white",
   },
 });
 
