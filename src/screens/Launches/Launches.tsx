@@ -52,6 +52,16 @@ const LaunchesScreen = () => {
     setLoading(false);
   };
 
+  const handleDefineYears = () => {
+    let launchDetails: Launch[] = launchStore.getState();
+    let years: number[] = [];
+    launchDetails.forEach((launch: Launch) => {
+      const year = timestampGetYear(launch.launch_date_unix); 
+      if (years.indexOf(year) === -1) years.push(year);
+    });
+    setYears(years);
+  };
+
   const sortLaunchesAsc = () => {
     let launchDetails: Launch[] = launches;
     launchDetails = launchDetails.sort(
@@ -85,6 +95,7 @@ const LaunchesScreen = () => {
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
+    if (launches.length > 0 && years.length === 0) handleDefineYears();
   }, []);
 
   const launchItem = ({item}: any) => <LaunchItem launch={item} />;
