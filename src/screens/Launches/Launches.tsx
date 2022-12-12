@@ -1,38 +1,55 @@
-import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  View,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, StyleSheet, View} from 'react-native';
+
+// Launches specific imports
+import type { Launches } from '../../types/type.launches';
+
+// TDD payload
+import payload from './payload-example';
 
 
-const Launches = () => {
-  
-    return (
-      <View>
-        <Text>Launches</Text>
-      </View>
-    );
+/**
+ * Launches Screen
+ *
+ * Includes filter by year, sort, reload data and launch list (past, present and future).
+ */
+const LaunchesScreen = () => {
+  const handleFetchLaunches = async () => {
+    setLaunches(payload);
+  };
+
+  const [launches, setLaunches] = useState([]);
+
+  useEffect(() => {
+    if (launches.length === 0) handleFetchLaunches();
+  }, [launches]);
+
+  return (
+    <View style={styles.launchesScreen}>
+      {launches && launches.map((launches: Launches, idx: number) => {
+        console.log(idx);
+        console.log(launches);
+        return (
+          <View key={idx}>
+            <Text style={styles.launchItemText}>{launches.flight_number}</Text>
+            <Text style={styles.launchItemText}>{launches.mission_name}</Text>
+            <Text style={styles.launchItemText}>{launches.launch_date_unix}</Text>
+            <Text style={styles.launchItemText}>{launches.rocket.rocket_name}</Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-    sectionContainer: {
-      marginTop: 32,
-      paddingHorizontal: 24,
-    },
-    sectionTitle: {
-      fontSize: 24,
-      fontWeight: '600',
-    },
-    sectionDescription: {
-      marginTop: 8,
-      fontSize: 18,
-      fontWeight: '400',
-    },
-    highlight: {
-      fontWeight: '700',
-    },
-  });
-  
-export default Launches;
-  
+  launchesScreen: {
+    padding: 10,
+    backgroundColor: "white",
+  },
+  launchItemText: {
+    color: "black",
+  }
+});
+
+export default LaunchesScreen;

@@ -3,7 +3,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 
 // App specific imports
-import Launches from './src/Screens/Launches/Launches';
+import LaunchesScreen from './src/Screens/Launches/Launches';
 
 
 /**
@@ -14,7 +14,7 @@ import Launches from './src/Screens/Launches/Launches';
 const App = () => {
   return (
     <SafeAreaView>
-      <Launches />
+      <LaunchesScreen />
     </SafeAreaView>
   );
 };
