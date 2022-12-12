@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableRipple, Text, IconButton, Menu } from 'react-native-paper';
 
+type ReloadButtonProps = {
+  handleFetchLaunches: () => void,
+};
+
 /**
  * Reload button
  *
  * Used to define the sort direction for a list
  */
-const ReloadButton = () => {
+const ReloadButton = ({ handleFetchLaunches }: ReloadButtonProps) => {
 
   return (
     <TouchableRipple
