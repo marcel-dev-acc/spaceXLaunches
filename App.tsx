@@ -32,7 +32,7 @@ const App = () => {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: "white",
+    backgroundColor: 'rgba(255, 255, 255, 1)',
     flex: 1,
   },
 });
