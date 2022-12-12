@@ -4,7 +4,7 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { Provider } from 'react-native-paper';
 
 // App specific imports
-import LaunchesScreen from './src/Screens/Launches/Launches';
+import { LaunchesScreen } from './src/screens';
 
 
 /**

@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, FlatList } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
-import FilterButton from '../../Components/FilterButton/FilterButton';
 
 // Launches specific imports
-import LaunchItem from '../../Components/LaunchItem/LaunchItem';
-import SortButton from '../../Components/SortButton/SortButton';
+import { FilterButton, LaunchItem, SortButton } from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
+import type { Launch } from '../../types/type.launches';
 
 // TDD payload
 import payload from './payload-example';
@@ -23,7 +22,7 @@ const LaunchesScreen = () => {
     
     // Define year filter list
     let years: number[] = [];
-    payload.forEach((launch) => {
+    payload.forEach((launch: Launch) => {
       const year = timestampGetYear(launch.launch_date_unix); 
       if (years.indexOf(year) === -1) years.push(year);
     });
