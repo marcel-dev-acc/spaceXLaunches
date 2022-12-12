@@ -23,6 +23,12 @@ The below laucnhes screen skeleton highlights the core functionality of the proj
 
 ![launches skeleton](readme-assets/launch-skeleton.png)
 
+## Project approach
+
+The development cycle involved rendering components on the UI and once satisfied that the components conformed to the general skeleton functionality was added as required. The commits of the project will highlight that core functionality was first created and then augmented to complement higher constructs, e.g. The API payload was first used to render the UI components in accordance with the skeleton, local state was responsible for the list management at this point. This was then replaced with the API service which retrieved data from the launch API on each refresh of the application. It was then necessary to add the launch list to a globally managed state using Redux. This was done so the data could be fetched on loading of the home screen to allow for a more streamlined user experience.
+
+A similar approach was taken to many other components implemented in this application.
+
 ## Screens
 
 ### Home
