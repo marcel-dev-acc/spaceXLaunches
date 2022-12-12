@@ -3,7 +3,7 @@ import {StyleSheet, View, FlatList, Image } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 
 // Launches specific imports
-import { FilterButton, LaunchItem, SortButton, ReloadButton } from '../../components';
+import { FilterButton, LaunchItem, SortButton, ReloadButton, Logo } from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
 import type { Launch } from '../../types/type.launches';
 
@@ -48,12 +48,7 @@ const LaunchesScreen = () => {
   return (
     <View style={styles.launchesScreen}>
       <View style={styles.headerContainer}>
-        <Image
-          accessibilityLabel="Space X logo"
-          source={require('../../assets/img/spacex-logo.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        <Logo />
         <ReloadButton />
       </View>
       <View style={styles.listActionsContainer}>
@@ -107,11 +102,6 @@ const styles = StyleSheet.create({
     margin: 5,
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  logo: {
-    width: 200,
-    height: 50,
-    backgroundColor: "white",
   },
 });
 
