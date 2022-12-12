@@ -208,3 +208,7 @@ A testing table is given below for the process I went through to test the applic
 ## Acknowledgements
 
 1. Rocket GIF, found on gifimage.net, for the loading component.
+
+## Considerations
+
+Due to environment limitations this application is not tested on iOS.
