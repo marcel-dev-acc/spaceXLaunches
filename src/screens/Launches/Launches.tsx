@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, FlatList } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 
@@ -72,8 +72,7 @@ const LaunchesScreen = () => {
     setLaunches(launchDetails);
   };
 
-  const _launches: Launch[] = [];
-  const [launches, setLaunches] = useState(_launches);
+  const [launches, setLaunches] = useState(launchStore.getState());
   const [sortDirectionAsc, setSortDirectionAsc] = useState(true);
   const [filterYear, setFilterYear] = useState(0);
   const _years: number[] = [];
