@@ -1,4 +1,4 @@
-type Rocket = {
+export type Rocket = {
     rocket_id: string,
     rocket_name: string,
   };
