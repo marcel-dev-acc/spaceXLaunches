@@ -1,11 +1,11 @@
 // Package imports
-import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { Provider as ReduxProvider } from 'react-redux';
+import React, {useState} from 'react';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import {Provider as PaperProvider} from 'react-native-paper';
+import {Provider as ReduxProvider} from 'react-redux';
 
 // App specific imports
-import { LaunchesScreen } from './src/screens';
+import {HomeScreen, LaunchesScreen} from './src/screens';
 import launchStore from './src/state/store';
 
 
@@ -15,11 +15,15 @@ import launchStore from './src/state/store';
  * Includes screen, theme and context definitions at this level.
  */
 const App = () => {
+
+  const [ready, setReady] = useState(false);
+
   return (
     <SafeAreaView style={styles.screen}>
       <ReduxProvider store={launchStore}>
         <PaperProvider>
-          <LaunchesScreen />
+          {!ready && (<HomeScreen setReady={setReady} />)}
+          {ready && (<LaunchesScreen />)}
         </PaperProvider>
       </ReduxProvider>
     </SafeAreaView>
