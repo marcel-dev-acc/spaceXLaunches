@@ -1,1 +1,1 @@
-export { default as LaunchesScreen } from "./Launches/Launches";
+export {default as LaunchesScreen} from './Launches/Launches';

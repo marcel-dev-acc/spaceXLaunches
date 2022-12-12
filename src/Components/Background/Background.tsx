@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, useWindowDimensions } from 'react-native';
+import {StyleSheet, View, Image, useWindowDimensions} from 'react-native';
 
 /**
  * Background
@@ -7,7 +7,6 @@ import { StyleSheet, View, Image, useWindowDimensions } from 'react-native';
  * Component to render background image
  */
 const Background = () => {
-
   const windowWidth = useWindowDimensions().width;
   const windowHeight = useWindowDimensions().height;
 
@@ -16,10 +15,13 @@ const Background = () => {
       <Image
         accessibilityLabel="Space X logo"
         source={require('../../assets/img/launch-home.png')}
-        style={[styles.background, {
-          width: windowWidth,
-          height: windowHeight,
-        }]}
+        style={[
+          styles.background,
+          {
+            width: windowWidth,
+            height: windowHeight,
+          },
+        ]}
         resizeMode="contain"
       />
     </View>
@@ -28,13 +30,11 @@ const Background = () => {
 
 const styles = StyleSheet.create({
   backgroundContainer: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: -10,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: 'rgba(255, 255, 255, 1)',
   },
-  background: {
-    
-  },
+  background: {},
 });
 
 export default Background;

@@ -1,7 +1,6 @@
-
 export type Get = {
-  ok: boolean,
-  data: any,
+  ok: boolean;
+  data: any;
 };
 
 export const get = async (url: string): Promise<Get> => {

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TouchableRipple, Text, IconButton, Menu } from 'react-native-paper';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {TouchableRipple, Text, IconButton, Menu} from 'react-native-paper';
 
 type FilterButtonProps = {
   years: number[],
@@ -13,8 +13,11 @@ type FilterButtonProps = {
  *
  * Used to define the sort direction for a list
  */
-const FilterButton = ({ years, setFilterYear, filterLaunchesByYear }: FilterButtonProps) => {
-
+const FilterButton = ({
+  years,
+  setFilterYear,
+  filterLaunchesByYear,
+}: FilterButtonProps) => {
   const toggleYearMenu = () => setYearMenuVisible(!yearMenuVisible);
 
   const [yearMenuVisible, setYearMenuVisible] = useState(false);
@@ -27,27 +30,22 @@ const FilterButton = ({ years, setFilterYear, filterLaunchesByYear }: FilterButt
         <TouchableRipple
           onPress={toggleYearMenu}
           rippleColor="rgba(0, 0, 0, .32)"
-          style={styles.buttonPress}
-        >
+          style={styles.buttonPress}>
           <View style={styles.buttonContainer}>
-            <Text
-              style={styles.buttonText}
-              variant="bodyLarge"
-            >
+            <Text style={styles.buttonText} variant="bodyLarge">
               Filter by Year
             </Text>
             <IconButton
               icon="menu-down"
               size={20}
-              iconColor={"rgba(255, 255, 255, 1)"}
+              iconColor={'rgba(255, 255, 255, 1)'}
               style={styles.buttonIcon}
             />
           </View>
         </TouchableRipple>
-      }
-    >
-      {years && years.map(
-        (year: number, idx: number) => {
+      }>
+      {years &&
+        years.map((year: number, idx: number) => {
           return (
             <Menu.Item
               key={idx}
@@ -59,27 +57,26 @@ const FilterButton = ({ years, setFilterYear, filterLaunchesByYear }: FilterButt
               title={year}
             />
           );
-        })
-      }
+        })}
     </Menu>
   );
 };
 
 const styles = StyleSheet.create({
   buttonPress: {
-    backgroundColor: "rgba(61, 96, 170, 1)",
+    backgroundColor: 'rgba(61, 96, 170, 1)',
     margin: 5,
-    textAlign: "center",
+    textAlign: 'center',
   },
   buttonContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     paddingLeft: 10,
     paddingTop: 0,
     paddingBottom: 0,
   },
   buttonText: {
-    alignSelf: "center",
-    color: "rgba(255, 255, 255, 1)",
+    alignSelf: 'center',
+    color: 'rgba(255, 255, 255, 1)',
   },
   buttonIcon: {
     margin: 0,

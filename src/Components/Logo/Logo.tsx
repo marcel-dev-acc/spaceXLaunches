@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import {StyleSheet, Image} from 'react-native';
 
 /**
  * Logo
@@ -7,7 +7,6 @@ import { StyleSheet, Image } from 'react-native';
  * Component to render company logo
  */
 const Logo = () => {
-
   return (
     <Image
       accessibilityLabel="Space X logo"
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     height: 50,
-    backgroundColor: "rgba(255, 255, 255, 1)",
+    backgroundColor: 'rgba(255, 255, 255, 1)',
   },
 });
 
