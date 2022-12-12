@@ -1,14 +1,20 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, FlatList, Image } from 'react-native';
+import {StyleSheet, View, FlatList } from 'react-native';
 import { Chip, Text } from 'react-native-paper';
 
 // Launches specific imports
-import { FilterButton, LaunchItem, SortButton, ReloadButton, Logo, Background } from '../../components';
+import {
+  FilterButton,
+  LaunchItem,
+  SortButton,
+  ReloadButton,
+  Logo,
+  Background,
+  LoadingModal,
+} from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
+import { fetchLaunches } from '../../services/api.launches.service';
 import type { Launch } from '../../types/type.launches';
-
-// TDD payload
-import payload from './payload-example';
 
 
 /**
@@ -18,7 +24,7 @@ import payload from './payload-example';
  */
 const LaunchesScreen = () => {
   const handleFetchLaunches = async () => {
-    let launchDetails: Launch[] = payload;
+    let launchDetails: Launch[] = await fetchLaunches();
     // Sort the list
     launchDetails.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
     // Define year filter list
@@ -58,6 +64,7 @@ const LaunchesScreen = () => {
   const [filterYear, setFilterYear] = useState(0);
   const _years: number[] = [];
   const [years, setYears] = useState(_years);  // Used for the filter by years
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
@@ -70,6 +77,10 @@ const LaunchesScreen = () => {
   return (
     <View style={styles.launchesScreen}>
       <Background />
+      <LoadingModal
+        loading={loading}
+        loadingText="Fetching launches"
+      />
       <View style={styles.headerContainer}>
         <Logo />
         <ReloadButton

@@ -15,7 +15,7 @@ const ReloadButton = ({ handleFetchLaunches }: ReloadButtonProps) => {
 
   return (
     <TouchableRipple
-        onPress={() => console.log("Pressed")}
+        onPress={handleFetchLaunches}
         rippleColor="rgba(0, 0, 0, .32)"
         style={styles.buttonPress}
     >
