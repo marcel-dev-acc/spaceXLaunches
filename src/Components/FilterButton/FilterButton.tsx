@@ -1,35 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { TouchableRipple, Text, IconButton } from 'react-native-paper';
+import { TouchableRipple, Text, IconButton, Menu } from 'react-native-paper';
 
 /**
  * Sort button
  *
  * Used to define the sort direction for a list
  */
-const FilterButton = ({ }: any) => {
+const FilterButton = ({ years, setFilterYear }: any) => {
+
+  const toggleYearMenu = () => setYearMenuVisible(!yearMenuVisible);
+
+  const [yearMenuVisible, setYearMenuVisible] = useState(false);
 
   return (
-    <TouchableRipple
-      onPress={() => console.log("Pressed")}
-      rippleColor="rgba(0, 0, 0, .32)"
-      style={styles.buttonPress}
-    >
-      <View style={styles.buttonContainer}>
-        <Text
-          style={styles.buttonText}
-          variant="bodyLarge"
+    <Menu
+      visible={yearMenuVisible}
+      onDismiss={toggleYearMenu}
+      anchor={
+        <TouchableRipple
+          onPress={() => toggleYearMenu()}
+          rippleColor="rgba(0, 0, 0, .32)"
+          style={styles.buttonPress}
         >
-          Filter by Year
-        </Text>
-        <IconButton
-          icon="menu-down"
-          size={20}
-          iconColor={"white"}
-          style={styles.buttonIcon}
-        />
-      </View>
-    </TouchableRipple>
+          <View style={styles.buttonContainer}>
+            <Text
+              style={styles.buttonText}
+              variant="bodyLarge"
+            >
+              Filter by Year
+            </Text>
+            <IconButton
+              icon="menu-down"
+              size={20}
+              iconColor={"white"}
+              style={styles.buttonIcon}
+            />
+          </View>
+        </TouchableRipple>
+      }
+    >
+      {years && years.map(
+        (year: number, idx: number) => {
+          return (
+            <Menu.Item
+              key={idx}
+              onPress={() => {
+                setFilterYear(year);
+                toggleYearMenu();
+              }}
+              title={year}
+            />
+          );
+        })
+      }
+    </Menu>
   );
 };
 

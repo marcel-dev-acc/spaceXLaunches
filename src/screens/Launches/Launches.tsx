@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, FlatList, Text } from 'react-native';
+import {StyleSheet, View, FlatList } from 'react-native';
+import { Chip, Text } from 'react-native-paper';
 import FilterButton from '../../Components/FilterButton/FilterButton';
 
 // Launches specific imports
 import LaunchItem from '../../Components/LaunchItem/LaunchItem';
 import SortButton from '../../Components/SortButton/SortButton';
+import { timestampGetYear } from '../../utils/date.util';
 
 // TDD payload
 import payload from './payload-example';
@@ -18,12 +20,23 @@ import payload from './payload-example';
 const LaunchesScreen = () => {
   const handleFetchLaunches = async () => {
     // Sort the list here
+    
+    // Define year filter list
+    let years: number[] = [];
+    payload.forEach((launch) => {
+      const year = timestampGetYear(launch.launch_date_unix); 
+      if (years.indexOf(year) === -1) years.push(year);
+    });
+    setYears(years);
+    // Set the launches internal state
     setLaunches(payload);
   };
 
   const [launches, setLaunches] = useState([]);
   const [sortDirectionAsc, setSortDirectionAsc] = useState(true);
-  const [filter, setFilter] = useState(false);
+  const [filterYear, setFilterYear] = useState(0);
+  const _years: number[] = [];
+  const [years, setYears] = useState(_years);  // Used for the filter by years
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
@@ -40,8 +53,25 @@ const LaunchesScreen = () => {
           sortDirectionAsc={sortDirectionAsc}
           setSortDirectionAsc={setSortDirectionAsc}
         />
-        <FilterButton />
+        <FilterButton
+          years={years}
+          setFilterYear={setFilterYear}
+        />
       </View>
+      {filterYear > 0 && (
+        <View style={styles.yearChipContainer}>
+          <Chip
+            onClose={() => setFilterYear(0)}
+            style={styles.yearChip}
+          >
+            <Text
+              variant='bodyLarge'
+            >
+              {filterYear}
+            </Text>
+          </Chip>
+        </View>
+      )}
       <FlatList
         data={launches}
         renderItem={launchItem}
@@ -57,6 +87,13 @@ const styles = StyleSheet.create({
   },
   listActionsContainer: {
     flexDirection: "row-reverse",
+  },
+  yearChipContainer: {
+    margin: 5,
+    flexDirection: "row-reverse",
+  },
+  yearChip: {
+    width: 90,
   },
 });
 
