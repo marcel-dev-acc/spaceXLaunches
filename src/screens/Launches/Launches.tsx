@@ -86,7 +86,7 @@ const LaunchesScreen = () => {
 
 const styles = StyleSheet.create({
   launchesScreen: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     flex: 1,
   },
   listActionsContainer: {

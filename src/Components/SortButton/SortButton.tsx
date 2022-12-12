@@ -38,7 +38,7 @@ const SortButton = ({ sortDirectionAsc, setSortDirectionAsc }: any) => {
 
 const styles = StyleSheet.create({
   buttonPress: {
-    backgroundColor: "rgb(61, 96, 170)",
+    backgroundColor: "rgba(61, 96, 170, 1)",
     margin: 5,
   },
   buttonContainer: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     alignSelf: "center",
-    color: "white",
+    color: "rgba(255, 255, 255, 1)",
   },
   buttonIcon: {
     margin: 0,

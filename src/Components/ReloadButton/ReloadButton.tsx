@@ -35,7 +35,7 @@ const ReloadButton = () => {
 
 const styles = StyleSheet.create({
   buttonPress: {
-    backgroundColor: "rgb(61, 96, 170)",
+    backgroundColor: "rgba(61, 96, 170, 1)",
     margin: 5,
     marginRight: 0,
     textAlign: "center",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     alignSelf: "center",
-    color: "white",
+    color: "rgba(255, 255, 255, 1)",
   },
   buttonIcon: {
     margin: 0,

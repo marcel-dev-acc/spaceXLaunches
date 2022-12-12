@@ -57,7 +57,7 @@ const LaunchItem = ({ launch }: LaunchItemProps) => {
 
 const styles = StyleSheet.create({
   launchItem: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 1)",
     padding: 5,
     margin: 10,
   },
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
   },
   launchItemText: {
-    color: "rgb(75, 75, 75)",
+    color: "rgba(75, 75, 75, 1)",
   },
 });
 
