@@ -3,6 +3,7 @@ import {StyleSheet, View, FlatList, Text } from 'react-native';
 
 // Launches specific imports
 import LaunchItem from '../../Components/LaunchItem/LaunchItem';
+import SortButton from '../../Components/SortButton/SortButton';
 
 // TDD payload
 import payload from './payload-example';
@@ -15,10 +16,13 @@ import payload from './payload-example';
  */
 const LaunchesScreen = () => {
   const handleFetchLaunches = async () => {
+    // Sort the list here
     setLaunches(payload);
   };
 
   const [launches, setLaunches] = useState([]);
+  const [sortDirectionAsc, setSortDirectionAsc] = useState(true);
+  const [filter, setFilter] = useState(false);
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
@@ -30,6 +34,12 @@ const LaunchesScreen = () => {
 
   return (
     <View style={styles.launchesScreen}>
+      <View>
+        <SortButton
+          sortDirectionAsc={sortDirectionAsc}
+          setSortDirectionAsc={setSortDirectionAsc}
+        />
+      </View>
       <FlatList
         data={launches}
         renderItem={launchItem}
