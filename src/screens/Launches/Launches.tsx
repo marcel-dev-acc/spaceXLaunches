@@ -18,20 +18,34 @@ import payload from './payload-example';
  */
 const LaunchesScreen = () => {
   const handleFetchLaunches = async () => {
-    // Sort the list here
-    
+    let launchDetails: Launch[] = payload;
+    // Sort the list
+    launchDetails.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
     // Define year filter list
     let years: number[] = [];
-    payload.forEach((launch: Launch) => {
+    launchDetails.forEach((launch: Launch) => {
       const year = timestampGetYear(launch.launch_date_unix); 
       if (years.indexOf(year) === -1) years.push(year);
     });
     setYears(years);
     // Set the launches internal state
-    setLaunches(payload);
+    setLaunches(launchDetails);
   };
 
-  const [launches, setLaunches] = useState([]);
+  const sortLaunchesAsc = () => {
+    let launchDetails: Launch[] = launches;
+    launchDetails = launchDetails.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
+    setLaunches(launchDetails);
+  };
+
+  const sortLaunchesDsc = () => {
+    let launchDetails: Launch[] = launches;
+    launchDetails = launchDetails.sort((a, b) => b.launch_date_unix - a.launch_date_unix);
+    setLaunches(launchDetails);
+  };
+
+  const _launches: Launch[] = [];
+  const [launches, setLaunches] = useState(_launches);
   const [sortDirectionAsc, setSortDirectionAsc] = useState(true);
   const [filterYear, setFilterYear] = useState(0);
   const _years: number[] = [];
@@ -56,6 +70,8 @@ const LaunchesScreen = () => {
         <SortButton
           sortDirectionAsc={sortDirectionAsc}
           setSortDirectionAsc={setSortDirectionAsc}
+          sortLaunchesAsc={sortLaunchesAsc}
+          sortLaunchesDsc={sortLaunchesDsc}
         />
         <FilterButton
           years={years}

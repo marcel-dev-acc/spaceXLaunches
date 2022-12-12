@@ -2,19 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableRipple, Text, IconButton } from 'react-native-paper';
 
+type SortButtonProps = {
+  sortDirectionAsc: boolean,
+  setSortDirectionAsc: (sortDirectionAsc: boolean) => void,
+  sortLaunchesAsc: () => void,
+  sortLaunchesDsc: () => void,
+};
+
 /**
  * Sort button
  *
  * Used to define the sort direction for a list
  */
-const SortButton = ({ sortDirectionAsc, setSortDirectionAsc }: any) => {
+const SortButton = ({
+  sortDirectionAsc,
+  setSortDirectionAsc,
+  sortLaunchesAsc,
+  sortLaunchesDsc,
+}: SortButtonProps) => {
 
-  const sortText = !sortDirectionAsc ? 'Ascending' : 'Descending';
-  const sortArrow = !sortDirectionAsc ? 'arrow-down' : 'arrow-up';
+  const sortText: string = sortDirectionAsc ? 'Ascending' : 'Descending';
+  const sortArrow: string = sortDirectionAsc ? 'arrow-down' : 'arrow-up';
+  const sortFunc = sortDirectionAsc ? sortLaunchesDsc : sortLaunchesAsc;
+
+  const handlePress = (): void => {
+    setSortDirectionAsc(!sortDirectionAsc);
+    sortFunc();
+  };
 
   return (
     <TouchableRipple
-      onPress={() => setSortDirectionAsc(!sortDirectionAsc)}
+      onPress={handlePress}
       rippleColor="rgba(0, 0, 0, .32)"
       style={styles.buttonPress}
     >
