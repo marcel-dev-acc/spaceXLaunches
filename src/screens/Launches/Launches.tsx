@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View, FlatList, Text } from 'react-native';
 
 // Launches specific imports
 import LaunchItem from '../../Components/LaunchItem/LaunchItem';
-import type { Launch } from '../../types/type.launches';
 
 // TDD payload
 import payload from './payload-example';
@@ -25,26 +24,24 @@ const LaunchesScreen = () => {
     if (launches.length === 0) handleFetchLaunches();
   }, [launches]);
 
+  const launchItem = ({ item }: any) => (
+      <LaunchItem launch={item} />
+  );
+
   return (
     <View style={styles.launchesScreen}>
-      <ScrollView style={styles.launchesList}>
-        {
-          launches && 
-          launches.map(
-            (launch: Launch, idx: number) => <LaunchItem key={idx} launch={launch} />
-          )
-        }
-      </ScrollView>
+      <FlatList
+        data={launches}
+        renderItem={launchItem}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   launchesScreen: {
-    padding: 10,
     backgroundColor: "white",
-  },
-  launchesList: {
+    flex: 1,
   },
 });
 

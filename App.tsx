@@ -1,6 +1,6 @@
 // Package imports
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 // App specific imports
 import LaunchesScreen from './src/Screens/Launches/Launches';
@@ -13,10 +13,17 @@ import LaunchesScreen from './src/Screens/Launches/Launches';
  */
 const App = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.screen}>
       <LaunchesScreen />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: "white",
+    flex: 1,
+  },
+});
 
 export default App;
