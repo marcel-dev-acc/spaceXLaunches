@@ -54,6 +54,7 @@ const LaunchesScreen = () => {
           style={styles.logo}
           resizeMode="contain"
         />
+        <ReloadButton />
       </View>
       <View style={styles.listActionsContainer}>
         <SortButton
@@ -103,16 +104,13 @@ const styles = StyleSheet.create({
     width: 90,
   },
   headerContainer: {
-    borderColor: "green",
-    borderWidth: 1,
     margin: 5,
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   logo: {
     width: 200,
     height: 50,
-    borderColor: "red",
-    borderWidth: 1,
     backgroundColor: "white",
   },
 });
