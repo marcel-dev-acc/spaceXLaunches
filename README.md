@@ -111,6 +111,8 @@ The background image can be seen statically behind the launch list. It provides 
 
 It is assumed that you are familiar with running React Native projects through the terminal, if not you can find environment setup instructions [here](https://reactnative.dev/docs/environment-setup) for __react native cli quickstart__.
 
+Setup the necessary packages with `yarn`.
+
 Navigate into the root of the project, with an android emulator running, and run `npx react-native run-android`.
 
 ## Technologies used
@@ -204,6 +206,20 @@ A testing table is given below for the process I went through to test the applic
 | Menu item | Pressing a year in the filter list renders a chip with the year on the UI | Passed |
 | Chip close | Pressing the close icon on the chip removes the filter on the list | Passed |
 | Sort button | Pressing the sort button changes the sort display of the list | Passed |
+
+__Device testing__
+
+This application was developed on Pixel 5 with the following infrastructure:
+
+- RAM: 4096 MB
+- VM Heap: 1024 MB
+- Storage: 20 GB
+
+The screens sections demonstrates this usage.
+
+Additionally, the application was tested on a device with dimensions: `1768x2208xhdpi` with identical infrastructure as for the Pixel 5.
+
+![reload modal](readme-assets/larger-device.png)
 
 ## Acknowledgements
 
