@@ -31,6 +31,8 @@ const SortButton = ({
 
   return (
     <TouchableRipple
+      accessible={true}
+      accessibilityLabel="Sort button"
       onPress={handlePress}
       rippleColor="rgba(0, 0, 0, .32)"
       style={styles.buttonPress}>

@@ -28,6 +28,8 @@ const FilterButton = ({
       onDismiss={toggleYearMenu}
       anchor={
         <TouchableRipple
+          accessible={true}
+          accessibilityLabel="Filter button"
           onPress={toggleYearMenu}
           rippleColor="rgba(0, 0, 0, .32)"
           style={styles.buttonPress}>

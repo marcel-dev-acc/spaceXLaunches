@@ -14,6 +14,8 @@ type ReloadButtonProps = {
 const ReloadButton = ({handleFetchLaunches}: ReloadButtonProps) => {
   return (
     <TouchableRipple
+      accessible={true}
+      accessibilityLabel="Reload button"
       onPress={handleFetchLaunches}
       rippleColor="rgba(0, 0, 0, .32)"
       style={styles.buttonPress}>
