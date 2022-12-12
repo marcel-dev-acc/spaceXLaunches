@@ -14,6 +14,9 @@ import {
 } from '../../components';
 import { timestampGetYear } from '../../utils/date.util';
 import { fetchLaunches } from '../../services/api.launches.service';
+import launchStore from '../../state/store';
+import { LAUNCHES_ACTION_TYPES } from '../../constants/state';
+import type { AddLaunchAction, RemoveLaunchAction } from '../../state/types';
 import type { Launch } from '../../types/type.launches';
 
 
@@ -23,19 +26,32 @@ import type { Launch } from '../../types/type.launches';
  * Includes filter by year, sort, reload data and launch list (past, present and future).
  */
 const LaunchesScreen = () => {
+
   const handleFetchLaunches = async () => {
+    setLoading(true);
     let launchDetails: Launch[] = await fetchLaunches();
     // Sort the list
     launchDetails.sort((a, b) => a.launch_date_unix - b.launch_date_unix);
-    // Define year filter list
+    // Define year filter list and store each item in global state
     let years: number[] = [];
     launchDetails.forEach((launch: Launch) => {
+      const dispatchRemoveLaunchObj: RemoveLaunchAction = {
+        type: LAUNCHES_ACTION_TYPES.LAUNCH_REMOVED,
+        flightNumber: launch.flight_number,
+      };
+      launchStore.dispatch(dispatchRemoveLaunchObj);
+      const dispatchAddLaunchObj: AddLaunchAction = {
+        type: LAUNCHES_ACTION_TYPES.LAUNCH_ADDED,
+        launchData: launch,
+      };
+      launchStore.dispatch(dispatchAddLaunchObj);
       const year = timestampGetYear(launch.launch_date_unix); 
       if (years.indexOf(year) === -1) years.push(year);
     });
     setYears(years);
     // Set the launches internal state
     setLaunches(launchDetails);
+    setLoading(false);
   };
 
   const sortLaunchesAsc = () => {
@@ -51,11 +67,9 @@ const LaunchesScreen = () => {
   };
 
   const filterLaunchesByYear = (year: number) => {
-    let launchDetails: Launch[] = launches; // Need to get content from global state again
-    console.log(year);
+    let launchDetails: Launch[] = launchStore.getState();
     launchDetails = launchDetails.filter((launch: Launch) => timestampGetYear(launch.launch_date_unix) === year);
     setLaunches(launchDetails);
-    console.log(launches.length);
   };
 
   const _launches: Launch[] = [];
@@ -64,7 +78,7 @@ const LaunchesScreen = () => {
   const [filterYear, setFilterYear] = useState(0);
   const _years: number[] = [];
   const [years, setYears] = useState(_years);  // Used for the filter by years
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (launches.length === 0) handleFetchLaunches();
@@ -105,7 +119,7 @@ const LaunchesScreen = () => {
           <Chip
             onClose={() => {
               setFilterYear(0);
-              handleFetchLaunches();
+              setLaunches(launchStore.getState());
             }}
             style={styles.yearChip}
             mode="outlined"
