@@ -2,12 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TouchableRipple, Text, IconButton, Menu } from 'react-native-paper';
 
+type FilterButtonProps = {
+  years: number[],
+  setFilterYear: (year: number) => void,
+};
+
 /**
  * Sort button
  *
  * Used to define the sort direction for a list
  */
-const FilterButton = ({ years, setFilterYear }: any) => {
+const FilterButton = ({ years, setFilterYear }: FilterButtonProps) => {
 
   const toggleYearMenu = () => setYearMenuVisible(!yearMenuVisible);
 
